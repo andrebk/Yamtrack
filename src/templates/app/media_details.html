@@ -506,13 +506,23 @@
           {% for episode in media.episodes %}
             <div class="bg-[#2a2f35] rounded-lg overflow-hidden shadow-lg">
               <div class="flex flex-col md:flex-row">
-                <img src="{{ IMG_NONE }}"
+                <div class="relative">
+                  <img src="{{ IMG_NONE }}"
                      alt="E{{ episode.episode_number }}"
                      data-src="{{ episode.image }}"
-                     class="lazyload md:w-64 md:h-40 flex-shrink-0 {% if episode.image != IMG_NONE %}object-cover{% endif %}">
+                     class="lazyload md:w-64 md:h-40 flex-shrink-0 {% if episode.image != IMG_NONE %}object-cover{% endif %}"
+                     style=" {% if not episode.history %}filter: grayscale(100%){% endif %}">
+                  <div class="absolute top-2 left-2 bg-gray-900/90 text-white text-xs px-2 py-1 rounded-md flex items-center shadow-md">
+                    {% if episode.history %}
+                      <div class="{{ MediaTypes.TV.value|media_color }}">
+                        {% include "app/icons/states/completed.svg" with classes="w-4 h-4" %}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
                 <div class="py-3 flex-1 flex flex-col">
                   <div class="flex-1">
-                    <div class="flex justify-between items-start mb-2 space-x-2 px-4">
+                    <div class="flex justify-between items-start mb-2 space-x-2 px-4 sm:flex-row">
                       <div>
                         <h2 class="text-xl font-semibold mb-1 line-clamp-1">{{ episode.title }}</h2>
                         <p class="text-sm text-gray-400">
@@ -525,11 +535,7 @@
                           <button @click="trackOpen = true"
                                   title="Track Episode"
                                   class="p-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition duration-300 cursor-pointer">
-                            {% if episode.history %}
-                              {% include "app/icons/eye.svg" with classes="w-4 h-4" %}
-                            {% else %}
-                              {% include "app/icons/eye-closed.svg" with classes="w-4 h-4" %}
-                            {% endif %}
+                            {% include "app/icons/edit.svg" with classes="w-4 h-4" %}
                           </button>
 
                           {% include "app/components/fill_track_episode.html" with request=request media=media episode=episode episode_title=episode.title csrf_token=csrf_token TRACK_TIME=TRACK_TIME only %}
