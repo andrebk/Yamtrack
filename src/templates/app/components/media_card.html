@@ -8,6 +8,7 @@
          class="lazyload w-full aspect-[2/3] bg-[#3e454d] {% if item.image != IMG_NONE %}object-cover{% endif %}"
          data-src="{{ item.image }}"
          src="{{ IMG_NONE }}">
+    </a>
 
     {% if media.status or item.media_type == MediaTypes.EPISODE.value %}
       <div class="absolute top-2 left-2 bg-gray-900/90 text-white text-xs px-2 py-1 rounded-md flex items-center shadow-md">
@@ -69,6 +70,7 @@
     {% endif %}
 
     <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover-tap:opacity-100 pointer-coarse:hidden">
+      <a href="{{ item|media_url }}" class="absolute inset-0"></a>
       <div class="relative flex items-center justify-center space-x-2.5">
         {% if item.media_type == MediaTypes.EPISODE.value %}
           <button @click="trackOpen = true"
@@ -111,7 +113,6 @@
         </button>
       </div>
     </div>
-    </a>
   </div>
 
   <div class="p-3">
