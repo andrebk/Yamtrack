@@ -454,6 +454,23 @@
 
       {# Media Details #}
       <h2 class="text-xl font-bold mb-4">Details</h2>
+        {% if media.media_type == MediaTypes.MOVIE.value or media.media_type == MediaTypes.TV.value or media.media_type == MediaTypes.SEASON.value  %}
+        <div class="bg-[#2a2f35] p-4 rounded-lg my-4">
+            <h3 class="text-sm font-semibold text-gray-400 mb-2">STREAMING</h3>
+            <div class="flex flex-wrap items-center gap-2 place-content-evenly">
+            {% if media.providers %}
+                {% for provider in media.providers %}
+                    <img class="size-10" src="{{ provider.image }}" title="{{ provider.provider_name }}"  />
+                {% endfor %}
+            {% else %}
+                <p>No watch providers</p>
+            {% endif %}
+            </div>
+            {% if media.providers %}
+              <p class="text-center text-xs text-gray-500 mt-2">Provider data from JustWatch</p>
+            {% endif %}
+        </div>
+        {% endif %}
       <div class="bg-[#2a2f35] p-4 rounded-lg text-center md:text-start">
         {% if media.details.items %}
           {% for key, value in media.details.items %}
@@ -489,7 +506,12 @@
               <h2 class="text-xl font-bold mb-4">{{ name|no_underscore|title }}</h2>
               <div class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4">
                 {% for item in related_items %}
-                  {% include "app/components/media_card.html" with item=item title=item.season_title|default:item.title media=None %}
+                  {% if media_type != MediaTypes.TV.value and media_type != MediaTypes.SEASON.value %}
+                    {# Set active to highlight the current movie in a collection. Avoid TV media, since seasons have same ID as the parent show #}
+                    {% include "app/components/media_card.html" with item=item title=item.season_title|default:item.title media=None secondary_color=media.media_id|str_equals:item.media_id active=media.media_id|str_equals:item.media_id %}
+                  {% else %}
+                    {% include "app/components/media_card.html" with item=item title=item.season_title|default:item.title media=None secondary_color=media.media_id|str_equals:item.media_id %}
+                  {% endif %}
                 {% endfor %}
               </div>
             </section>
