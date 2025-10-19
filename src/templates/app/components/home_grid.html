@@ -4,6 +4,7 @@
   <div class="bg-[#2a2f35] rounded-lg overflow-hidden shadow-lg transition-all duration-300"
        x-data="{ trackOpen: false, listsOpen: false, historyOpen: false }">
     <div class="relative">
+      <a href="{{ media.item|media_url }}">
       <img alt="{{ media }}"
            class="lazyload w-full aspect-[2/3] {% if media.item.image != IMG_NONE %}object-cover{% endif %}"
            data-src="{{ media.item.image }}"
@@ -24,9 +25,7 @@
         </div>
       {% endif %}
 
-      <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover-tap:opacity-100">
-        <a href="{{ media.item|media_url }}" class="absolute inset-0"></a>
-
+      <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover-tap:opacity-100 pointer-coarse:hidden">
         <div class="relative flex items-center justify-center space-x-2.5">
           {# Track Button #}
           <button class="p-2.5 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 hover:scale-110 hover:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-200 cursor-pointer"
@@ -62,6 +61,7 @@
           </button>
         </div>
       </div>
+      </a>
     </div>
 
     <div class="p-3 space-y-3">
