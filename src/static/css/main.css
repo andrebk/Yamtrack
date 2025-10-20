@@ -886,6 +886,12 @@
   .grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
+  .grid-cols-\[200px_minmax\(900px\,_1fr\)_100px\] {
+    grid-template-columns: 200px minmax(900px, 1fr) 100px;
+  }
+  .grid-cols-\[max-content_1fr\] {
+    grid-template-columns: max-content 1fr;
+  }
   .grid-cols-\[repeat\(auto-fill\,minmax\(150px\,1fr\)\)\] {
     grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
   }
@@ -921,6 +927,9 @@
   }
   .justify-end-safe {
     justify-content: safe flex-end;
+  }
+  .justify-items-start {
+    justify-items: start;
   }
   .gap-1 {
     gap: calc(var(--spacing) * 1);
@@ -1925,6 +1934,16 @@
       border-width: 0px;
     }
   }
+  .odd\:mb-2 {
+    &:nth-child(odd) {
+      margin-bottom: calc(var(--spacing) * 2);
+    }
+  }
+  .odd\:mb-6 {
+    &:nth-child(odd) {
+      margin-bottom: calc(var(--spacing) * 6);
+    }
+  }
   .hover\:scale-110 {
     &:hover {
       @media (hover: hover) {
@@ -2440,6 +2459,16 @@
       margin-right: auto;
     }
   }
+  .md\:mb-2 {
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing) * 2);
+    }
+  }
+  .md\:mb-4 {
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing) * 4);
+    }
+  }
   .md\:mb-8 {
     @media (width >= 48rem) {
       margin-bottom: calc(var(--spacing) * 8);
@@ -2533,6 +2562,11 @@
       transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
     }
   }
+  .md\:grid-cols-1 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2546,6 +2580,16 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
+    }
+  }
+  .md\:justify-items-center {
+    @media (width >= 48rem) {
+      justify-items: center;
+    }
+  }
+  .md\:gap-0 {
+    @media (width >= 48rem) {
+      gap: calc(var(--spacing) * 0);
     }
   }
   .md\:gap-10 {
@@ -2587,6 +2631,11 @@
       padding-inline: calc(var(--spacing) * 0);
     }
   }
+  .md\:text-center {
+    @media (width >= 48rem) {
+      text-align: center;
+    }
+  }
   .md\:text-left {
     @media (width >= 48rem) {
       text-align: left;
@@ -2600,6 +2649,13 @@
   .md\:whitespace-nowrap {
     @media (width >= 48rem) {
       white-space: nowrap;
+    }
+  }
+  .md\:odd\:mb-2 {
+    @media (width >= 48rem) {
+      &:nth-child(odd) {
+        margin-bottom: calc(var(--spacing) * 2);
+      }
     }
   }
   .lg\:sticky {

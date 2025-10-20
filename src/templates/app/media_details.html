@@ -468,26 +468,26 @@
             </div>
         </div>
         {% endif %}
-      <div class="bg-[#2a2f35] p-4 rounded-lg text-center md:text-start">
+      <div class="bg-[#2a2f35] p-4 rounded-lg">
         {% if media.details.items %}
+          <div class="grid grid-cols-[max-content_1fr] sm:grid-cols-2 gap-4 items-center justify-items-start md:gap-0 md:grid-cols-1">
           {% for key, value in media.details.items %}
-            <div class="mb-4">
               <h3 class="text-sm font-semibold text-gray-400">{{ key|no_underscore|upper }}</h3>
               {% if value|is_list %}
+                <div class="md:mb-4">
                 {% for item in value %}<p class="text-gray-200">{{ item }}</p>{% endfor %}
+                </div>
               {% else %}
-                <p class="text-gray-200">{{ value|default_if_none:"Unknown" }}</p>
+                <p class="text-gray-200 md:mb-4">{{ value|default_if_none:"Unknown" }}</p>
               {% endif %}
-            </div>
           {% endfor %}
           {% if media.source != Sources.MANUAL.value %}
-            <div>
-              <h3 class="text-sm font-semibold text-gray-400">Source</h3>
+              <h3 class="text-sm font-semibold text-gray-400">SOURCE</h3>
               <a href="{{ media.source_url }}"
                  class="text-gray-200 hover:text-indigo-500 transition-colors duration-200"
                  target="_blank">{{ media.source|source_readable }}</a>
-            </div>
           {% endif %}
+          </div>
         {% else %}
           <div class="text-gray-200">No details available</div>
         {% endif %}
