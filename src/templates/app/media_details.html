@@ -613,7 +613,7 @@
             <div class="flex flex-wrap items-center gap-2 place-content-evenly">
             {% if media.providers %}
                 {% for provider in media.providers %}
-                    <img class="size-10" src="{{ provider.image }}" title="{{ provider.provider_name }}"  />
+                    <img class="size-10 rounded-md" src="{{ provider.image }}" title="{{ provider.provider_name }}"  />
                 {% endfor %}
             {% else %}
                 <p>No watch providers</p>
