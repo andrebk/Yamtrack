@@ -609,9 +609,9 @@ def get_providers(response):
 
     # TODO: Make this configurable
     country = "NO"
-    providers = (provider_response.get("results", {})
-                 .get(country, {})
-                 .get("flatrate", []))
+    country_providers = provider_response.get("results", {}).get(country, {})
+    providers = country_providers.get("flatrate", [])
+    providers.extend(country_providers.get("free", []))
 
     for provider in providers:
         provider["image"] = get_image_url(provider["logo_path"])
