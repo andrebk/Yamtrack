@@ -510,8 +510,7 @@
                   <img src="{{ IMG_NONE }}"
                      alt="E{{ episode.episode_number }}"
                      data-src="{{ episode.image }}"
-                     class="lazyload md:w-64 md:h-40 flex-shrink-0 {% if episode.image != IMG_NONE %}object-cover{% endif %}"
-                     style=" {% if not episode.history %}filter: grayscale(100%){% endif %}">
+                     class="lazyload md:w-64 md:h-40 flex-shrink-0 {% if episode.image != IMG_NONE %}object-cover{% endif %}">
                   {% if episode.history %}
                     <div class="absolute top-2 left-2 bg-gray-900/90 text-white text-xs px-2 py-1 rounded-md flex items-center shadow-md">
                       <div class="{{ MediaTypes.TV.value|media_color }}">
