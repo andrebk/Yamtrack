@@ -540,14 +540,14 @@
                 </div>
                 <div class="py-3 flex-1 flex flex-col">
                   <div class="flex-1">
-                    <div class="flex justify-between items-start mb-2 space-x-2 px-4 sm:flex-row">
+                    <div class="flex justify-between items-start mb-2 space-x-2 px-4 flex-col xl:flex-row">
                       <div>
                         <h2 class="text-xl font-semibold mb-1 line-clamp-1">{{ episode.title }}</h2>
                         <p class="text-sm text-gray-400">
                           Episode {{ episode.episode_number }} • {{ episode.air_date|default_if_none:"Unknown air date" }}{% if episode.runtime %} • {{ episode.runtime }}{% endif %}
                         </p>
                       </div>
-                      <div class="flex space-x-2">
+                      <div class="flex space-x-2 mt-2 xl:mt-0 self-center xl:self-auto">
                         {# Track Episode #}
                         <div x-data="{ trackOpen: false }">
                           <button @click="trackOpen = true"
